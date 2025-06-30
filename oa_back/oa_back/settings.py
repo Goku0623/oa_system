@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'corsheaders',
+    'apps.oaauth'
 ]
 
 MIDDLEWARE = [
@@ -130,3 +131,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # 允许所有域名跨域访问
 CORS_ORIGIN_ALLOW_ALL = True
+
+# 覆盖django自带的user模型
+AUTH_USER_MODEL = 'oaauth.OAUser'
