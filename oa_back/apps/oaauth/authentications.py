@@ -4,7 +4,9 @@ from django.conf import settings
 from rest_framework.authentication import BaseAuthentication, get_authorization_header
 from rest_framework import exceptions
 from jwt.exceptions import ExpiredSignatureError
-from .models import OAUser
+from django.contrib.auth import get_user_model
+
+OAUser = get_user_model()
 
 
 def generate_jwt(user):
@@ -15,6 +17,7 @@ def generate_jwt(user):
 class UserTokenAuthentication(BaseAuthentication):
     def authenticate(self, request):
         # 这里的request：是rest_framework.request.Request对象
+        # 绑定到视图的request上面去
         return request._request.user, request._request.auth
 
 
